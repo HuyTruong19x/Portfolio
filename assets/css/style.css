@@ -186,12 +186,16 @@ border-color: #5D5B66;
 color: #FFFFFF;
 }
 
+#technical-section {
+    background-color: #F8F8F8;
+}
+
 /* ==========================================================================
    CONTACT SECTION
    ========================================================================== */
 
 #contact-section {
-    background-color: #FAFAFA;
+    background-color: #FFF;
 }
 /* ==========================================================================
    FOOTER SECTION
@@ -205,4 +209,24 @@ color: #FFFFFF;
     padding: 10px 30px 10px 30px;
 }
 
+.UserName{
+	color: white;
+	-webkit-text-stroke: 1px #F8F8F8;
+	text-shadow: 0px 1px 4px #23430C;
+}
 
+.UserName{
+	color: white;
+	-webkit-text-stroke: 1px #F8F8F8;
+	text-shadow: 0px 2px 4px red;
+}
+
+/* .UserName{
+	color: #333;
+	-webkit-text-stroke: 1px #282828;
+	text-shadow: 0px 4px 4px #282828;
+} */
+
+#WhatIDo i {
+    margin-right: 20px;
+}
