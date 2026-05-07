@@ -260,6 +260,34 @@
     });
   }
 
+  /* ── THEME TOGGLE ── */
+  function initThemeToggle() {
+    const btns = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-mobile')
+    ].filter(Boolean);
+
+    function applyTheme(isLight) {
+      document.body.classList.toggle('light', isLight);
+      btns.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = isLight ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+      });
+    }
+
+    /* Restore saved preference */
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') applyTheme(true);
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isLight = !document.body.classList.contains('light');
+        applyTheme(isLight);
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+    });
+  }
+
   /* ── CONTACT FORM ── */
   function initForm() {
     const form = document.getElementById('contact-form');
@@ -288,6 +316,7 @@
     initCardToggles();
     initNavbar();
     initForm();
+    initThemeToggle();
   });
 
 })();
