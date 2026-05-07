@@ -1,561 +1,585 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
-<!--<![endif]-->
-<!-- HEAD SECTION -->
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-    <title>Vu Huy Truong - Game Developer</title>
-    <!--GOOGLE FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!--BOOTSTRAP MAIN STYLES -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!--FONTAWESOME MAIN STYLE -->
-    <!-- <link href="assets/css/font-awesome.min.css" rel="stylesheet" /> -->
-    <!--CUSTOM STYLE -->
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="assets/fontawesome-free-6.5.1-web/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vu Huy Truong — Game Developer portfolio. 7 years experience in Unity, C++, WebGL, and Web3 gaming.">
+  <meta name="author" content="Vu Huy Truong">
+  <title>Vu Huy Truong — Game Developer</title>
+  <link rel="stylesheet" href="assets/fontawesome-free-6.5.1-web/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<!--END HEAD SECTION -->
-
 <body>
-    <!-- NAV SECTION -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">VU HUY TRUONG</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#header-section">HOME</a></li>
-                    <li><a href="#about-section">ABOUT</a></li>
-                    <li><a href="#products-section">MY-WORK</a></li>
-                    <!-- <li><a href="#technical-section">WHAT I DO</a></li> -->
-                    <li><a href="#contact-section">CONTACT / HIRE ME</a></li>
-                </ul>
-            </div>
 
-        </div>
+<!-- ════════════════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="boot-text"></div>
+  <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo"><span>V</span>HT</div>
+    <ul class="nav-links">
+      <li><a href="#hero"     data-section="hero">Home</a></li>
+      <li><a href="#about"    data-section="about">About</a></li>
+      <li><a href="#projects" data-section="projects">Projects</a></li>
+      <li><a href="#contact"  data-section="contact" class="nav-hire">Hire Me</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile">
+    <ul>
+      <li><a href="#hero"     data-section="hero">Home</a></li>
+      <li><a href="#about"    data-section="about">About</a></li>
+      <li><a href="#projects" data-section="projects">Projects</a></li>
+      <li><a href="#contact"  data-section="contact">Hire Me</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="hero-inner">
+    <div class="hero-avatar-wrap">
+      <div class="hex-border"></div>
+      <div class="hex-clip">
+        <img src="assets/img/team/avatar - Copy.jpg" alt="Vu Huy Truong">
+      </div>
+      <div class="level-badge">LVL&nbsp;7</div>
     </div>
-    <!--END NAV SECTION -->
-    <!-- HEADER SECTION -->
-    <div id="header-section">
-        <div class="container">
-            <div class="row centered">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1><strong class="UserName"> VU HUY TRUONG</strong>
 
-                    </h1>
-                    <br /> <br /> <br />
-                    <h2 class="UserName">Game Developer</h2>
-                    <br />
-                    <a href="#about-section"> <i class="fa fa-angle-double-down fa-5x down-icon"></i> </a>
-                </div>
-            </div>
+    <h1 class="hero-name glitch" data-text="VU HUY TRUONG">VU HUY TRUONG</h1>
 
-        </div>
-
+    <div class="hero-subtitle">
+      <span id="typewriter"></span><span class="cursor"></span>
     </div>
-    <!--END HEADER SECTION -->
-    <!--ABOUT SECTION -->
-    <div id="about-section">
-        <div class="container">
-            <div class="row main-top-margin text-center">
-                <div class="col-md-8 col-md-offset-2 " data-scrollreveal="enter top and move 100px, wait 0.3s">
-                    <h1>ABOUT ME</h1>
-                    <!-- <h4>
-                        I am Currently a game Developer
-                    </h4> -->
-                </div>
-            </div>
-            <!-- ./ Main Heading-->
-            <div class="row main-low-margin text-center">
-                <div class="col-md-3 " data-scrollreveal="enter left and move 100px, wait 0.4s">
-                    <p>
-                        <img class="img-quare bottam-pad" src="assets/img/team/avatar - Copy.jpg" alt="" width="300" height="550">
-                        <a class="btn btn-success" href="assets/CV/VuHuyTruong_Resume.pdf">DOWNLOAD RESUME</a>
-                    </p>
-                    <p>
-                        <a href="https://www.facebook.com/HuyTruong19x/"><i
-                                class="fa-brands fa-facebook-square fa-3x color-facebook"></i></a>
-                        <a href="https://www.linkedin.com/in/huytruong-gamedev/"><i
-                                class="fa-brands fa-linkedin fa-3x color-linkedin"></i></a>
-                        <a href="https://github.com/HuyTruong19x"><i
-                                class="fa-brands fa-github-square fa-3x color-github"></i></a>
-                                <a href="https://join.skype.com/invite/U1NZfhVahE7R"><i class="fa-brands fa-skype fa-3x color-skype"></i></a>
-                    </p>
 
-                </div>
+    <p class="hero-location">
+      <i class="fa-solid fa-location-dot"></i>Ho Chi Minh City, Vietnam
+    </p>
 
-                <div class="col-md-7 col-sm-7 col-md-offset-1  text-justify"
-                    data-scrollreveal="enter right and move 100px, wait 0.4s">
-                    <h3> Hi! I'm Truong</h3>
-                    <p>
-                        Game Developer with 8 years of experience building production-ready games using C++ and Unity across WebGL and mobile platforms. Strong expertise in core gameplay architecture, scalable system design, and performance optimization for browser-based environments.</br>
-                        Led development of core systems for a large-scale WebGL game with blockchain integration, contributing to a product generating 8M+ in revenue. Designed modular and reusable gameplay frameworks, built optimized UI systems for WebGL constraints, and improved build stability through Jenkins-based CI/CD automation.</br>
-                        Experienced in client-side integration with blockchain-enabled backend services, implementing NFT verification, wallet-based authentication flows, and token-driven gameplay features while coordinating closely with backend teams to maintain clean on-chain/off-chain separation.</br>
-                        Actively participated in technical interviews, mentoring developers, conducting code reviews, and contributing to architectural decisions. Comfortable working within distributed international teams, collaborating across time zones, and taking ownership of features from design through production release.</br>
-
-                    </p>
-                </div>
-            </div>
-            <!-- ./ Row Content-->
-        </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">
+        <i class="fa-solid fa-gamepad"></i>View Projects
+      </a>
+      <a href="assets/CV/VuHuyTruong_Resume.pdf" class="btn-outline" target="_blank">
+        <i class="fa-solid fa-file-arrow-down"></i>Download CV
+      </a>
     </div>
-    <!-- END ABOUT SECTION -->
+  </div>
 
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 
-    <!--WORK/PRODUCTS SECTION -->
-    <div id="products-section">
-        <div class="container">
-            <div class="row main-top-margin text-center" data-scrollreveal="enter top and move 100px, wait 0.3s">
-                <div class="col-md-8 col-md-offset-2 ">
-                    <h1>PROJECTS</h1>
-                    <!-- <h4>
-                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                    </h4> -->
-                </div>
-            </div>
-            <!-- ./ Main Heading-->
-            <hr />
-            <div class="row main-low-margin">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.8s">
-                        <img src="assets/img/projects/Asphalt9.jpg" width="250" height="400" alt="">
-                    </div>
-                    <div class="col-md-8 " data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">Asphalt 9: Legends</strong></h4>
-                        <h6> <strong class="color-blue">Company : Gameloft</strong></h6>
-                        <p>
-                            Asphalt 9: Legends is a high-speed arcade racing game developed by Gameloft, featuring console-quality graphics, officially licensed supercars, and adrenaline-driven arcade gameplay. Players race across real-world inspired tracks, performing precision drifts, nitro boosts, and cinematic aerial stunts in both single-player and real-time multiplayer modes.</br>
-                            The game has achieved major commercial success, surpassing 100 million downloads worldwide and generating strong multi-platform revenue across mobile and PC. Its long-term live operations model, frequent content updates, esports tournaments, and brand collaborations have positioned it as one of the most successful arcade racing titles in the mobile gaming market—making it a strong reference point for any high-performance, cross-platform racing project in a professional portfolio.
-                        </p>
-                    </div>
-                    <div class="col-md-12" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <p>
-                            My Responsibility :
-                        <ul>
-                            <li>Upgraded and maintained the Ads, Redeem, and CRM modules, improving functionality, performance, and cross-system integration while ensuring compatibility with evolving platform requirements and enhancing overall user experience.</li>
-                            <li>Adapted and prepared the game for distribution on Amazon Appstore (later discontinued due to low device support).</li>
-                            <li>Adapted and shipped the game on Steam, including full integration with Steamworks services (Achievements, Cloud Save, IAP).<br />
-                                Store page : <a>https://store.steampowered.com/app/1815780</a></li>
-                            <li>Adapted the game for distribution on Facebook Cloud Gaming, integrating the required cloud SDK and platform services.<br />
-                                Ref : <a>https://about.fb.com/news/2020/10/cloud-gaming-meet-facebook-gaming/</a></li>
-                            <li>Applied modern C++ best practices, including smart pointers, templates, RAII principles, and improved memory management patterns.</li>
-                            <li>Researched, evaluated, and integrated third-party technologies such as CefSharp, Steam SDK, Steam Services, Facebook Cloud SDK, and Amazon Services.</li>
-                            <li>Maintained and improved CI/CD pipelines on Jenkins to automate multi-platform builds and deployment processes.</li>
-                            <li>Performed performance optimizations to improve runtime efficiency and resource usage.</li>
-                            <li>Identified, investigated, and resolved critical bugs to ensure product stability.</li>
-                        </ul>
-                        </p>
-                        <a href="https://store.steampowered.com/app/1815780" class="btn btn-success">Steam Game</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA9HM" class="btn btn-primary">Android Game</a>
-                    </div>
-                </div>
-
-            </div>
-            <hr />
-            <div class="row main-low-margin">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">LOL Land</strong></h4>
-                        <h6> <strong class="color-blue">Company : Yield Guild Games - Hyper Reel</strong></h6>
-
-                        <p>
-                            <img src="assets/img/projects/LOL_Land.png" alt="" width="100%">
-                        </p>
-
-                        <p>
-                            LOL Land is a browser-based Web3 board game developed by Hype Reel and published under the YGG Play ecosystem. Combining casual board game mechanics with blockchain rewards and NFT features, it allows players to earn in-game rewards while navigating vibrant themed boards. Since its launch in May 2025, LOL Land has attracted a significant player base and generated multi-million dollar revenues — surpassing $4.5 million in lifetime revenue and reporting continued growth with cumulative revenues exceeding $8 million through strong player engagement and in-game economy activity.
-                        </p>
-                        <p>
-                            My Responsibility :
-                        <ul>
-                            <li>Architected and implemented core gameplay systems and modular game framework.</li>
-                            <li>Developed and optimized scalable UI systems for WebGL platform.</li>
-                            <li>Integrated Unity client with blockchain-enabled backend services (NFT verification, wallet-based features, reward flows).</li>
-                            <li>Implemented client-side handling of asynchronous blockchain transaction states.</li>
-                            <li>Optimized WebGL performance, including memory usage, asset loading, and runtime efficiency.</li>
-                            <li>Designed and maintained Jenkins CI/CD pipelines for automated builds, asset processing, and configuration management.</li>
-                            <li>Collaborated closely with backend and blockchain teams to align on on-chain/off-chain architecture.</li>
-                            <li>Worked within distributed international teams across time zones to deliver production-ready features.</li>
-                        </ul>
-                        </p>
-                        <a href="https://www.lol.land" class="btn btn-success">Official Game</a>
-                        <a href="https://x.com/lollandgame" class="btn btn-success">Social Game</a>
-                    </div>
-                </div>
-
-            </div>
-            <!-- ./ Row Content-->
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter left and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">Live Breeder</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Company : Indigames Inc<br />
-                                Platform : WebGL
-                            </strong>
-                        </h6>
-                        <p>
-                            <img class="img-margin-product" src="assets/img/projects/LiveBreeder_1.png" alt=""
-                                width="250" height="400">
-                            <img class="img-margin-product" src="assets/img/projects/LiveBreeder_2.png" alt=""
-                                width="250" height="400">
-                            <img class="img-margin-product" src="assets/img/projects/LiveBreeder_3.png" alt=""
-                                width="250" height="400">
-                        </p>
-                        <p>
-                            A live-Game for mobile run on WebGL. It runs inside our client application, it means it runs
-                            on webview and not a standalone application <br />
-                            You will Breed, Feed and Train monster and bring them to PVE or PVP battle.
-                        </p>
-                        <p>
-                            My Responsibility :
-                        <ul>
-                            <li>Design and implement battle logic</li>
-                            <li>Handle battle scene including UI/Animation/Effect</li>
-                            <li>Handle room in PVP by using photon</li>
-                            <li>Interaction between viewer and streamer (heal HP or trigger random skill by viewer to
-                                support streamer do PVE)</li>
-                            <li>Distribute events from websocket by using pub/sub system to do monster's action (after bringing local battle logic to server)</li>
-                            <li>Implement some Editor tool to speed up working process</li>
-                            <li>Optimization loading game and avoid crash</li>
-                        </ul>
-                        </p>
-                        <a href="https://www.youtube.com/watch?v=VF5yPmSUSEs" class="btn btn-success">Gameplay</a>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter down and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">Crypto Quest</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Company : Indigames Inc<br />
-                                Platform : WebGL
-                            </strong>
-                        </h6>
-                        <p>
-                            <img class="img-margin-product" src="assets/img/projects/CryptoQuest.png" width="100%">
-                        </p>
-                        <p>
-                            An RPG Game with NFT integration. Combining the classic charm of retro pixel art with the cutting-edge technology of Non-Fungible Tokens (NFTs), this game offers players an immersive and unique experience.<br/>
-                            In this game, players embark on epic quests in a pixelated world filled with adventure and mystery for exploring the world. Player will receive token via fierce battle or mystery chest
-                        </p>
-                        <p>
-                            My Responsibility :
-                        <ul>
-                            <li>Design and implement Shop system</li>
-                            <li>Design and implement Savepoint system</li>
-                            <li>Design and implement Savepoint system</li>
-                            <li>Integrate Demension Box NFT</li>
-                            <li>Integrate character preview stats system when selected an item</li>
-                            <li>Custom Tiled plugin to auto-place Shop and Savepoint from Tiled to Unity. Easily for planners to design maps and shop items</li>
-                        </ul>
-                        </p>
-                        <a href="https://crypto-quest.org/" class="btn btn-primary">Official website</a>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">BIG ESCAPE</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Company : Indigames Inc<br />
-                                Platform : Android/WebGL
-                            </strong>
-                        </h6>
-                        <p>
-                            <img src="assets/img/projects/BigEscape.png" width="454" height="204" alt="">
-                        </p>
-                        <p>
-                            <img class="img-margin-product" src="assets/img/projects/BigEscape_1.png" alt="" width="250"
-                                height="400">
-                            <img class="img-margin-product" src="assets/img/projects/BigEscape_2.png" alt="" width="250"
-                                height="400">
-                            <img class="img-margin-product" src="assets/img/projects/BigEscape_3.png" alt="" width="250"
-                                height="400">
-                        </p>
-                        <p>
-                            A hyper casual game, combine escape and shooting gameplay. Users will try to escape and
-                            shoot the big monster that running after them<br />
-                            Collaborated with artist team and planer to develop it.
-                        </p>
-                        <p>
-                            Techical :
-                        <ul>
-                            <li>Path creator plugin</li>
-                            <li>Particle</li>
-                            <li>Dotween</li>
-                            <li>Applovin SDK</li>
-                            <li>Max SDK (Applovin)</li>
-                            <li>Javascript plugin</li>
-                        </ul>
-                        </p>
-                        <a href="https://kantan.game/easygame/game/514" class="btn btn-success">Official Game</a>
-
-                    </div>
-                </div>
-
-            </div>
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter left and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">Vegetable Puzzle</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Company : Indigames Inc<br />
-                                Platform : WebGL
-                            </strong>
-                        </h6>
-                        <p>
-                            <img src="assets/img/projects/VegetablePuzzle.png" width="454" height="204" alt="">
-                        </p>
-                        <p>
-                            <img class="img-margin-product" src="assets/img/projects/VegetablePuzzle_1.png" alt=""
-                                width="250" height="400">
-                            <img class="img-margin-product" src="assets/img/projects/VegetablePuzzle_2.png" alt=""
-                                width="250" height="400">
-                            <img class="img-margin-product" src="assets/img/projects/VegetablePuzzle_3.png" alt=""
-                                width="250" height="400">
-                        </p>
-                        <p>
-                            A hyper casual game. Users will try to fill the basket by fruits and vegetables shaped like
-                            the Tetris game.<br/>
-                            Got the most liked new game on Kantan GameBox
-                        </p>
-                        <p>
-                            Techical :
-                        <ul>
-                            <li>Spine</li>
-                            <li>Dotween</li>
-                            <li>Javascript plugin</li>
-                        </ul>
-                        </p>
-                        <a href="https://kantan.game/lightgame/game/513" class="btn btn-primary">Official Game</a>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter top and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">MEW DUNGEON OF WONDERS</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Game Jam Projects
-                            </strong>
-                        </h6>
-                        <p>
-                            <img class="img-margin-product" src="assets/img/projects/MewDungeon.png">
-                            <img class="img-margin-product" src="assets/img/projects/MewDungeon_1.png">
-                        </p>
-                        <p>
-                            I met 2 guys in a channel on Discord, a channel about Unity dev. They are from USA and
-                            Germany.<br />
-                            Then, we collaborated when the channel held a game jam contest<br />
-                            We were very happy when it reaches #2 in that contest
-                        </p>
-                        <a href="https://pixitales.itch.io/mew-dungeon-of-wonders" class="btn btn-success">Official
-                            Game</a>
-
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">LINE 98 AR</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Personal
-                            </strong>
-                        </h6>
-                        <p>
-                            Using AR Foundation and combine with Line 98 Game<br />
-                            This is the first time that I work with AR.It detects the plane and paint the game in the
-                            real world and we can playable on it
-                        </p>
-                        <a href="https://github.com/HuyTruong19x/Lines" class="btn btn-primary">GitHub Project</a>
-
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row main-low-margin bottam-pad">
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-12 " data-scrollreveal="enter top and move 100px, wait 0.4s">
-                        <h4> <strong class="color-red">Dedicated Mirror Networking</strong></h4>
-                        <h6>
-                            <strong class="color-blue">
-                                Personal
-                            </strong>
-                        </h6>
-                        <p>
-                            Currently, I'm doing some research as personal hobby, to learn Networking framework to do
-                            multiplay games.<br />
-                            The Gameplay is based on games such as Among Us, Goose Goose Duck
-                        </p>
-                        <a href="https://github.com/HuyTruong19x/Mirror_2D" class="btn btn-success">GitHub Project</a>
-
-                    </div>
-                </div>
-            </div>
-            <!-- ./ Row Content-->
-        </div>
+<!-- ════════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">// CHARACTER SHEET</div>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <div class="divider"></div>
     </div>
-    <!--END WORK/PRODUCTS SECTION -->
 
-    <!-- TECHNICAL SECTION -->
-    <!-- <div id="technical-section">
-        <div class="container">
-            <div class="row main-top-margin text-center">
-                <div class="col-md-8 col-md-offset-2 bottam-pad"
-                    data-scrollreveal="enter top and move 100px, wait 0.3s">
-                    <h1>What I Do</h1>
-                </div>
-            </div>
-            <div class="row main-low-margin bottam-pad text-center">
-                <div data-scrollreveal="enter right and move 100px, wait 0.3s" id="WhatIDo">
-                    <i class="fa-brands fa-unity fa-5x"></i>
-                    <i class="fa-brands fa-android fa-5x" style="color: green;"></i>
-                    <i class="fa-brands fa-steam fa-5x"></i>
-                    <i class="fa-brands fa-github fa-5x" style="color: purple;"></i>
-                    <i class="fa-brands fa-facebook fa-5x" style="color: blue;"></i>
-                    <i class="fa-brands fa-csharp fa-5x" style="color: blue;"></i>
-                </div>
-            </div>
+    <div class="about-grid">
+      <!-- Character card -->
+      <div class="char-card reveal-left">
+        <div class="char-avatar">
+          <img src="assets/img/team/avatar - Copy.jpg" alt="Vu Huy Truong">
         </div>
-    </div> -->
-    <!-- END TECHNICAL SECTION -->
+        <div class="char-class">Game Developer</div>
+        <div class="char-name">Vu Huy Truong</div>
 
-    <!--CONTACT SECTION -->
-    <div id="contact-section">
-        <div class="container">
-            <div class="row main-top-margin text-center">
-                <div class="col-md-8 col-md-offset-2 bottam-pad"
-                    data-scrollreveal="enter top and move 100px, wait 0.3s">
-                    <h1>Contact / Hire Me</h1>
-                </div>
-            </div>
-            <!-- ./ Main Heading-->
-            <div class="row">
-                <div class="col-md-12  col-sm-12 ">
-                    <div class="col-md-6  " data-scrollreveal="enter left and move 100px, wait 0.4s">
-                        <h3> My Location</h3>
-                        <hr />
-                        <p>
-                            57 Street 51,<br />
-                            Binh Thuan Ward,<br />
-                            Ho Chi Minh City. <br />
-                            Call: +84-335-112-009<br />
-                            Email: vuhuytruong1996@gmail.com<br />
-                        </p>
-
-                    </div>
-                    <div class="col-md-6  " data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h3>Drop a Line or Hire Me </h3>
-                        <hr />
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" required="required" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" required="required"
-                                            placeholder="Email address">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" required="required"
-                                            placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Ref. (IF any)">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <div class="form-group">
-                                        <textarea name="message" id="message" required="required" class="form-control"
-                                            rows="3" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Submit Request</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-            <!-- ./ Row Content-->
+        <div class="char-stats">
+          <div class="char-stat-row"><span>CLASS</span><span>Programmer</span></div>
+          <div class="char-stat-row"><span>LEVEL</span><span>7 Years EXP</span></div>
+          <div class="char-stat-row"><span>ENGINE</span><span>Unity / C++</span></div>
+          <div class="char-stat-row"><span>BASE</span><span>HCM City, VN</span></div>
+          <div class="char-stat-row"><span>EMAIL</span><span>vuhuytruong1996@gmail.com</span></div>
         </div>
+
+        <a href="assets/CV/VuHuyTruong_Resume.pdf" class="btn-primary char-cv" target="_blank">
+          <i class="fa-solid fa-file-arrow-down"></i>Download Resume
+        </a>
+
+        <div class="social-links">
+          <a href="https://www.facebook.com/HuyTruong19x/" class="social-link" target="_blank" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/huytruong-gamedev/" class="social-link" target="_blank" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/HuyTruong19x" class="social-link" target="_blank" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://join.skype.com/invite/U1NZfhVahE7R" class="social-link" target="_blank" title="Skype">
+            <i class="fa-brands fa-skype"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bio + Skills -->
+      <div class="reveal-right">
+        <h3 class="bio-heading">Hi, I'm <span>Truong</span></h3>
+
+        <p class="bio-text">
+          Game Developer with <strong>7 years</strong> of experience building production-ready games using
+          <strong>C++</strong> and <strong>Unity</strong> across WebGL and mobile platforms. Strong expertise
+          in core gameplay architecture, scalable system design, and performance optimization for
+          browser-based environments.
+        </p>
+        <p class="bio-text">
+          Led development of core systems for a large-scale WebGL game with blockchain integration,
+          contributing to a product generating <strong>$8M+ in revenue</strong>. Experienced in
+          client-side integration with blockchain-enabled backend services — NFT verification,
+          wallet-based authentication, and token-driven gameplay.
+        </p>
+        <p class="bio-text">
+          Actively participated in technical interviews, mentoring developers, conducting code reviews,
+          and contributing to architectural decisions. Comfortable in distributed international teams
+          across time zones.
+        </p>
+
+        <!-- Skills -->
+        <div class="skills-section" style="margin-top:32px;">
+          <div class="skills-label">// STATS</div>
+
+          <div class="skill-row">
+            <div class="skill-meta"><span>Unity</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta"><span>C# / .NET</span><span>88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="88%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta"><span>C++</span><span>82%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="82%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta"><span>Game Design</span><span>76%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="76%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta"><span>WebGL / Optimization</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="80%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta"><span>Web3 / Blockchain</span><span>65%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="65%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta"><span>AR / XR</span><span>55%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="55%"></div></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!--END CONTACT SECTION -->
-    <!--FOOTER SECTION -->
-    <!-- <div id="footer">
-        <div class="container">
-            <div class="row ">
-                &copy; 2014 www.yourdomain.com | All Right Reserved 				
-		
-            </div>
-            
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════════════ -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">// MISSION LOG</div>
+      <h2 class="section-title">My <span>Projects</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-tabs reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="mobile">Mobile</button>
+      <button class="filter-btn" data-filter="web3">Web3</button>
+      <button class="filter-btn" data-filter="webgl">WebGL</button>
+      <button class="filter-btn" data-filter="hypercasual">Hyper-Casual</button>
+      <button class="filter-btn" data-filter="gamejam">Game Jam</button>
+      <button class="filter-btn" data-filter="ar">AR</button>
+      <button class="filter-btn" data-filter="personal">Personal</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="projects-grid">
+
+      <!-- Asphalt 9 -->
+      <div class="project-card reveal" data-cat="mobile featured">
+        <div class="card-img">
+          <img src="assets/img/projects/Asphalt9.jpg" alt="Asphalt 9: Legends">
+          <span class="card-badge badge-featured">★ Featured</span>
         </div>
-       
-    </div>   -->
-    <!--END FOOTER SECTION -->
-    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY LIBRARY -->
-    <script src="assets/js/jquery.js"></script>
-    <!-- CORE BOOTSTRAP LIBRARY -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- SCROLL REVEL LIBRARY FOR SCROLLING ANIMATIONS-->
-    <script src="assets/js/scrollReveal.js"></script>
-    <!-- CUSTOM SCRIPT-->
-    <script src="assets/js/custom.js"></script>
+        <div class="card-body">
+          <div class="card-company">Gameloft</div>
+          <div class="card-title">Asphalt 9: Legends</div>
+          <p class="card-desc">
+            High-speed arcade racing game with console-quality graphics, licensed supercars, and real-time multiplayer.
+            Surpassed <strong>100M downloads</strong> worldwide across mobile, PC, and cloud platforms.
+          </p>
+          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
+          <ul class="card-responsibility">
+            <li>Upgraded and maintained the Ads, Redeem, and CRM modules.</li>
+            <li>Shipped the game on <strong>Steam</strong> with full Steamworks integration (Achievements, Cloud Save, IAP).</li>
+            <li>Adapted the game for <strong>Facebook Cloud Gaming</strong> with full cloud SDK integration.</li>
+            <li>Applied modern C++ best practices: smart pointers, RAII, templates, improved memory management.</li>
+            <li>Researched and integrated third-party tech: CefSharp, Steam SDK, Facebook Cloud SDK, Amazon Services.</li>
+            <li>Maintained CI/CD pipelines on Jenkins for automated multi-platform builds.</li>
+            <li>Performed runtime performance optimization and resolved critical bugs.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">C++</span><span class="tag">Mobile</span>
+            <span class="tag">Steam</span><span class="tag">CI/CD</span><span class="tag">Jenkins</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://store.steampowered.com/app/1815780" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-brands fa-steam"></i>Steam
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA9HM" class="card-btn card-btn-ghost" target="_blank">
+              <i class="fa-brands fa-google-play"></i>Android
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOL Land -->
+      <div class="project-card reveal" data-cat="web3 webgl featured">
+        <div class="card-img">
+          <img src="assets/img/projects/LOL_Land.png" alt="LOL Land">
+          <span class="card-badge badge-web3">Web3</span>
+        </div>
+        <div class="card-body">
+          <div class="card-company">Yield Guild Games — Hype Reel</div>
+          <div class="card-title">LOL Land</div>
+          <p class="card-desc">
+            Browser-based Web3 board game combining casual gameplay with blockchain rewards and NFT features.
+            Generated <strong>$8M+ cumulative revenue</strong> since May 2025 launch.
+          </p>
+          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
+          <ul class="card-responsibility">
+            <li>Architected and implemented core gameplay systems and modular game framework.</li>
+            <li>Developed and optimized scalable UI systems for WebGL platform.</li>
+            <li>Integrated Unity client with blockchain-enabled backend services (NFT verification, wallet-based features, reward flows).</li>
+            <li>Implemented client-side handling of asynchronous blockchain transaction states.</li>
+            <li>Optimized WebGL performance: memory usage, asset loading, and runtime efficiency.</li>
+            <li>Designed and maintained Jenkins CI/CD pipelines for automated builds and configuration management.</li>
+            <li>Collaborated with distributed international teams across time zones.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">WebGL</span><span class="tag">NFT</span><span class="tag">Web3</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://www.lol.land" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-solid fa-globe"></i>Play Game
+            </a>
+            <a href="https://x.com/lollandgame" class="card-btn card-btn-ghost" target="_blank">
+              <i class="fa-brands fa-x-twitter"></i>Social
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Breeder -->
+      <div class="project-card reveal" data-cat="web3 webgl">
+        <div class="card-img">
+          <img src="assets/img/projects/LiveBreeder_1.png" alt="Live Breeder">
+          <span class="card-badge badge-web3">WebGL</span>
+        </div>
+        <div class="card-body">
+          <div class="card-company">Indigames Inc</div>
+          <div class="card-title">Live Breeder</div>
+          <p class="card-desc">
+            Live game running on WebGL inside a client app. Breed, feed, and train monsters for PVE and PVP battles.
+            Includes real-time viewer interaction via websocket.
+          </p>
+          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
+          <ul class="card-responsibility">
+            <li>Designed and implemented battle logic and battle scene (UI, Animation, VFX).</li>
+            <li>Handled PVP room management using Photon.</li>
+            <li>Built viewer-streamer interaction: heal HP or trigger skills from viewer side.</li>
+            <li>Distributed events from WebSocket using pub/sub system to drive monster actions.</li>
+            <li>Built custom Editor tools to accelerate development workflow.</li>
+            <li>Optimized loading performance and prevented crashes.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">WebGL</span><span class="tag">Photon</span><span class="tag">WebSocket</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://www.youtube.com/watch?v=VF5yPmSUSEs" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-brands fa-youtube"></i>Gameplay
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crypto Quest -->
+      <div class="project-card reveal" data-cat="web3 webgl">
+        <div class="card-img">
+          <img src="assets/img/projects/CryptoQuest.png" alt="Crypto Quest">
+          <span class="card-badge badge-web3">NFT RPG</span>
+        </div>
+        <div class="card-body">
+          <div class="card-company">Indigames Inc</div>
+          <div class="card-title">Crypto Quest</div>
+          <p class="card-desc">
+            Retro pixel-art RPG with NFT integration. Players explore a pixelated world, battle enemies,
+            collect tokens, and interact with on-chain assets via Dimension Box NFTs.
+          </p>
+          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
+          <ul class="card-responsibility">
+            <li>Designed and implemented Shop system and Savepoint system.</li>
+            <li>Integrated Dimension Box NFT system.</li>
+            <li>Built character preview stats panel for item selection.</li>
+            <li>Created custom Tiled plugin to auto-place shops and savepoints from map editor to Unity.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">WebGL</span><span class="tag">NFT</span><span class="tag">Pixel Art</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://crypto-quest.org/" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-solid fa-globe"></i>Website
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Big Escape -->
+      <div class="project-card reveal" data-cat="hypercasual mobile webgl">
+        <div class="card-img">
+          <img src="assets/img/projects/BigEscape.png" alt="Big Escape">
+        </div>
+        <div class="card-body">
+          <div class="card-company">Indigames Inc</div>
+          <div class="card-title">Big Escape</div>
+          <p class="card-desc">
+            Hyper-casual game combining escape and shooting. Players run from and shoot massive monsters
+            chasing them across procedural paths.
+          </p>
+          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
+          <ul class="card-responsibility">
+            <li>Path creator plugin integration for procedural level design.</li>
+            <li>Particle and VFX system implementation.</li>
+            <li>DOTween animation integration.</li>
+            <li>Integrated Applovin MAX SDK for monetization.</li>
+            <li>JavaScript plugin bridge for WebGL platform.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">Android</span><span class="tag">WebGL</span><span class="tag">Applovin</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://kantan.game/easygame/game/514" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-solid fa-gamepad"></i>Play Game
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vegetable Puzzle -->
+      <div class="project-card reveal" data-cat="hypercasual webgl">
+        <div class="card-img">
+          <img src="assets/img/projects/VegetablePuzzle.png" alt="Vegetable Puzzle">
+        </div>
+        <div class="card-body">
+          <div class="card-company">Indigames Inc</div>
+          <div class="card-title">Vegetable Puzzle</div>
+          <p class="card-desc">
+            Hyper-casual Tetris-inspired puzzle. Fill the basket with fruit and vegetable shaped pieces.
+            Ranked <strong>#1 most-liked new game</strong> on Kantan GameBox.
+          </p>
+          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
+          <ul class="card-responsibility">
+            <li>Spine animation integration for character animations.</li>
+            <li>DOTween animation for UI and piece movement.</li>
+            <li>JavaScript plugin bridge for WebGL platform.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">WebGL</span><span class="tag">Spine</span><span class="tag">DOTween</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://kantan.game/lightgame/game/513" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-solid fa-gamepad"></i>Play Game
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEW Dungeon -->
+      <div class="project-card reveal" data-cat="gamejam">
+        <div class="card-img">
+          <img src="assets/img/projects/MewDungeon.png" alt="MEW Dungeon of Wonders">
+          <span class="card-badge badge-gamejam">#2 Place</span>
+        </div>
+        <div class="card-body">
+          <div class="card-company">Game Jam — International Team</div>
+          <div class="card-title">MEW Dungeon of Wonders</div>
+          <p class="card-desc">
+            Collaborated with developers from the USA and Germany on a Discord game jam contest.
+            The game achieved <strong>#2 ranking</strong> in the competition.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">Game Jam</span><span class="tag">Remote Team</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://pixitales.itch.io/mew-dungeon-of-wonders" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-brands fa-itch-io"></i>itch.io
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINE 98 AR -->
+      <div class="project-card reveal" data-cat="ar personal">
+        <div class="card-img" style="background:#0a1020; display:flex; align-items:center; justify-content:center; min-height:160px;">
+          <i class="fa-solid fa-vr-cardboard" style="font-size:64px; color:rgba(0,212,255,.25);"></i>
+        </div>
+        <div class="card-body">
+          <div class="card-company">Personal Project</div>
+          <div class="card-title">LINE 98 AR</div>
+          <p class="card-desc">
+            Classic LINE 98 board game brought into augmented reality using AR Foundation.
+            Detects real-world planes and renders a fully playable game board in physical space.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">AR Foundation</span><span class="tag">Mobile</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/HuyTruong19x/Lines" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-brands fa-github"></i>GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mirror Networking -->
+      <div class="project-card reveal" data-cat="personal">
+        <div class="card-img" style="background:#0a1020; display:flex; align-items:center; justify-content:center; min-height:160px;">
+          <i class="fa-solid fa-network-wired" style="font-size:64px; color:rgba(0,212,255,.25);"></i>
+        </div>
+        <div class="card-body">
+          <div class="card-company">Personal Project</div>
+          <div class="card-title">Dedicated Mirror Networking</div>
+          <p class="card-desc">
+            Research project exploring multiplayer networking with Mirror framework.
+            Inspired by social deduction games like Among Us and Goose Goose Duck.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span>
+            <span class="tag">Mirror</span><span class="tag">Multiplayer</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/HuyTruong19x/Mirror_2D" class="card-btn card-btn-primary" target="_blank">
+              <i class="fa-brands fa-github"></i>GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">// JOIN PARTY</div>
+      <h2 class="section-title">Contact <span>/ Hire Me</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info -->
+      <div class="reveal-left">
+        <div class="contact-info-label">// Open for Opportunities</div>
+        <h3 class="contact-info-title">Let's Build Something Great</h3>
+        <p class="contact-info-text">
+          Available for full-time roles, contract work, and interesting game projects.
+          I respond to all messages within 24 hours.
+        </p>
+
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-detail-text">57 Street 51, Binh Thuan Ward, Ho Chi Minh City</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-detail-text">+84 335 112 009</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-detail-text">vuhuytruong1996@gmail.com</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div class="contact-detail-text">
+            <a href="https://www.linkedin.com/in/huytruong-gamedev/" target="_blank">linkedin.com/in/huytruong-gamedev</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="reveal-right">
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-control" placeholder="Job offer / Freelance / Collab" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" rows="5" placeholder="Tell me about the project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">► SEND MESSAGE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><span>V</span>HT — VU HUY TRUONG</div>
+    <div class="footer-copy">Built with <span>♥</span> &amp; lots of coffee &nbsp;·&nbsp; © 2025</div>
+  </div>
+</footer>
+
+<script src="assets/js/custom.js"></script>
 </body>
-
 </html>
