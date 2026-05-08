@@ -5,588 +5,1027 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Vu Huy Truong — Game Developer portfolio. 7 years experience in Unity, C++, WebGL, and Web3 gaming.">
   <meta name="author" content="Vu Huy Truong">
-  <title>Vu Huy Truong — Game Developer</title>
+  <title>VHT — Game Developer</title>
   <link rel="stylesheet" href="assets/fontawesome-free-6.5.1-web/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════
-     LOADING SCREEN
-════════════════════════════════════════════════════ -->
-<div id="loading-screen">
-  <div class="boot-text"></div>
-  <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+<!-- ═══════ GLOBAL OVERLAYS ═══════ -->
+<div id="scanlines"></div>
+<div id="crt-vignette"></div>
+<div id="coin-layer"></div>
+
+<!-- ═══════ ACHIEVEMENT POPUP ═══════ -->
+<div id="achievement-popup">
+  <div class="ach-icon">🏆</div>
+  <div class="ach-text">
+    <div class="ach-label">ACHIEVEMENT UNLOCKED</div>
+    <div id="achievement-title">???</div>
+  </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     LOADING SCREEN — CONTRA BOOT
+═══════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="load-logo">VHT.EXE</div>
+  <div class="load-sub">GAME DEVELOPER PORTFOLIO</div>
+  <div id="boot-log"></div>
+  <div class="load-bar-wrap">
+    <div id="loading-bar-fill"></div>
+  </div>
+  <div id="press-start">▶ PRESS START</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HUD NAVBAR
+═══════════════════════════════════════ -->
 <nav id="navbar">
-  <div class="nav-inner">
-    <div class="nav-logo"><span>V</span>HT</div>
-    <ul class="nav-links">
-      <li><a href="#hero"     data-section="hero">Home</a></li>
-      <li><a href="#about"    data-section="about">About</a></li>
-      <li><a href="#projects" data-section="projects">Projects</a></li>
-      <li><a href="#contact"  data-section="contact" class="nav-hire">Hire Me</a></li>
+  <div class="hud-bar">
+    <div class="hud-logo" id="nav-logo"><span>V</span>HT</div>
+
+    <!-- Score / Lives / Stage HUD -->
+    <div class="hud-stats" id="hud-center">
+      <div class="hud-stat">
+        <span class="hud-stat-label">LIVES</span>
+        <span class="hud-lives">♥♥♥</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-stat-label">SCORE</span>
+        <span class="hud-stat-val" id="hud-score-val">000000</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-stat-label">STAGE</span>
+        <span class="hud-stat-val">1-1</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-stat-label">TIME</span>
+        <span class="hud-stat-val" id="hud-timer">300</span>
+      </div>
+    </div>
+
+    <!-- Nav links -->
+    <ul class="hud-links">
+      <li><a href="#hero"       class="hud-nav-link" data-section="hero">HOME</a></li>
+      <li><a href="#about"      class="hud-nav-link" data-section="about">PROFILE</a></li>
+      <li><a href="#skills"     class="hud-nav-link" data-section="skills">SKILLS</a></li>
+      <li><a href="#projects"   class="hud-nav-link" data-section="projects">STAGES</a></li>
+      <li><a href="#experience" class="hud-nav-link" data-section="experience">MISSIONS</a></li>
+      <li><a href="#contact"    class="hud-nav-link hud-hire" data-section="contact">HIRE ME</a></li>
     </ul>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-      <i class="fa-solid fa-sun"></i>
+
+    <button class="sound-btn" id="sound-toggle" title="Sound ON">
+      <span class="sound-icon">♪</span>
     </button>
-    <button class="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <button class="hud-hamburger" id="hud-hamburger" aria-label="Menu">
+      <span>▶ MENU</span>
     </button>
   </div>
-  <div class="nav-mobile">
+
+  <!-- Mobile nav -->
+  <div class="hud-mobile" id="hud-mobile-menu">
     <ul>
-      <li><a href="#hero"     data-section="hero">Home</a></li>
-      <li><a href="#about"    data-section="about">About</a></li>
-      <li><a href="#projects" data-section="projects">Projects</a></li>
-      <li><a href="#contact"  data-section="contact">Hire Me</a></li>
-      <li>
-        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle theme"
-          style="margin:8px 24px; width:auto; padding:0 14px; gap:8px; font-family:var(--f-heading); font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--muted);">
-          <i class="fa-solid fa-sun"></i> Toggle Theme
-        </button>
-      </li>
+      <li><a href="#hero"       class="hud-nav-link" data-section="hero">HOME</a></li>
+      <li><a href="#about"      class="hud-nav-link" data-section="about">PLAYER PROFILE</a></li>
+      <li><a href="#skills"     class="hud-nav-link" data-section="skills">POWER-UPS</a></li>
+      <li><a href="#projects"   class="hud-nav-link" data-section="projects">STAGE SELECT</a></li>
+      <li><a href="#experience" class="hud-nav-link" data-section="experience">MISSION LOG</a></li>
+      <li><a href="#contact"    class="hud-nav-link" data-section="contact">HIRE ME</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ════════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     HERO — GAME TITLE SCREEN
+═══════════════════════════════════════ -->
 <section id="hero">
-  <canvas id="particle-canvas"></canvas>
+  <canvas id="hero-canvas"></canvas>
 
-  <div class="hero-inner">
-    <div class="hero-avatar-wrap">
-      <div class="hex-border"></div>
-      <div class="hex-clip">
-        <img src="assets/img/team/avatar - Copy.jpg" alt="Vu Huy Truong">
+  <div class="hero-wrap">
+    <!-- Left: Title + HUD + Menu -->
+    <div class="hero-left">
+      <div class="hero-stage-tag">★ INSERT COIN ★ PLAYER 1 READY ★</div>
+
+      <div class="hero-title-row">
+        <div class="hero-title">VU HUY</div>
+        <div class="hero-title">TRUONG</div>
       </div>
-      <div class="level-badge">LVL&nbsp;7</div>
+      <div class="hero-title-sub">GAME DEVELOPER</div>
+
+      <div class="hero-typewriter">
+        <span id="typewriter"></span><span class="hero-cursor"></span>
+      </div>
+
+      <p class="hero-desc">
+        <strong>7 years</strong> crafting production-grade games in Unity &amp; C++.
+        WebGL · Mobile · Web3. Based in <strong>Ho Chi Minh City, Vietnam</strong>.
+      </p>
+
+      <!-- Mini HUD stats -->
+      <div class="hero-hud">
+        <div class="hero-hud-box">
+          <div class="hero-hud-box-val">7+</div>
+          <div class="hero-hud-box-label">YRS EXP</div>
+        </div>
+        <div class="hero-hud-box">
+          <div class="hero-hud-box-val">9+</div>
+          <div class="hero-hud-box-label">PROJECTS</div>
+        </div>
+        <div class="hero-hud-box">
+          <div class="hero-hud-box-val">$8M+</div>
+          <div class="hero-hud-box-label">REVENUE</div>
+        </div>
+        <div class="hero-hud-box">
+          <div class="hero-hud-box-val">100M+</div>
+          <div class="hero-hud-box-label">DOWNLOADS</div>
+        </div>
+      </div>
+
+      <!-- Game-style menu buttons -->
+      <div class="hero-menu">
+        <a href="#projects" class="pixel-btn pixel-btn-red">
+          <i class="fa-solid fa-gamepad"></i>START GAME
+        </a>
+        <a href="#about" class="pixel-btn pixel-btn-green">
+          <i class="fa-solid fa-user"></i>PLAYER PROFILE
+        </a>
+        <a href="assets/CV/VuHuyTruong_Resume.pdf" class="pixel-btn pixel-btn-outline" target="_blank">
+          <i class="fa-solid fa-file-arrow-down"></i>DOWNLOAD CV
+        </a>
+      </div>
     </div>
 
-    <h1 class="hero-name glitch" data-text="VU HUY TRUONG">VU HUY TRUONG</h1>
-
-    <div class="hero-subtitle">
-      <span id="typewriter"></span><span class="cursor"></span>
-    </div>
-
-    <p class="hero-location">
-      <i class="fa-solid fa-location-dot"></i>Ho Chi Minh City, Vietnam
-    </p>
-
-    <div class="hero-cta">
-      <a href="#projects" class="btn-primary">
-        <i class="fa-solid fa-gamepad"></i>View Projects
-      </a>
-      <a href="assets/CV/VuHuyTruong_Resume.pdf" class="btn-outline" target="_blank">
-        <i class="fa-solid fa-file-arrow-down"></i>Download CV
-      </a>
+    <!-- Right: Player card -->
+    <div class="hero-player-card">
+      <div class="player-frame">
+        <div class="player-frame-bar">
+          <span>PLAYER 1</span>
+          <span>LVL 7</span>
+        </div>
+        <div class="player-photo-wrap">
+          <img src="assets/img/team/avatar - Copy.jpg" alt="Vu Huy Truong">
+        </div>
+        <div class="player-stats-bar">
+          <div class="player-stat-row">
+            <span class="player-stat-key">CLASS</span>
+            <span class="player-stat-val">GAME DEV</span>
+          </div>
+          <div class="player-stat-row">
+            <span class="player-stat-key">EXP</span>
+            <span class="player-stat-val">7 YRS</span>
+          </div>
+          <div class="player-stat-row">
+            <span class="player-stat-key">HP</span>
+            <span></span>
+          </div>
+          <div class="player-hp"></div>
+        </div>
+      </div>
+      <div class="pf-corner tl"></div>
+      <div class="pf-corner tr"></div>
+      <div class="pf-corner bl"></div>
+      <div class="pf-corner br"></div>
     </div>
   </div>
 
-  <div class="scroll-hint">
-    <span>SCROLL</span>
-    <div class="scroll-arrow"></div>
+  <!-- Scroll hint -->
+  <div class="hero-scroll-hint">
+    <span>SCROLL DOWN</span>
+    <div class="scroll-arrows">
+      <div class="scroll-arrow"></div>
+      <div class="scroll-arrow"></div>
+      <div class="scroll-arrow"></div>
+    </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     ABOUT
-════════════════════════════════════════════════════ -->
+<!-- TICKER BAND 1 -->
+<div class="ticker-band">
+  <div class="ticker-track">
+    <span class="tk-coin">★ GAME DEVELOPER</span><span>UNITY SPECIALIST</span>
+    <span class="tk-coin">★ C++ PROGRAMMER</span><span>WEBGL EXPERT</span>
+    <span class="tk-coin">★ WEB3 BUILDER</span><span>7 YEARS EXPERIENCE</span>
+    <span class="tk-coin">★ HO CHI MINH CITY</span><span>OPEN TO WORK</span>
+    <span class="tk-coin">★ GAME DEVELOPER</span><span>UNITY SPECIALIST</span>
+    <span class="tk-coin">★ C++ PROGRAMMER</span><span>WEBGL EXPERT</span>
+    <span class="tk-coin">★ WEB3 BUILDER</span><span>7 YEARS EXPERIENCE</span>
+    <span class="tk-coin">★ HO CHI MINH CITY</span><span>OPEN TO WORK</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ABOUT — PLAYER PROFILE / RPG DIALOG
+═══════════════════════════════════════ -->
 <section id="about" class="section">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">// CHARACTER SHEET</div>
-      <h2 class="section-title">About <span>Me</span></h2>
-      <div class="divider"></div>
+    <div class="stage-header reveal">
+      <div class="stage-eyebrow">// STAGE 01 — CHARACTER SELECT //</div>
+      <h2 class="stage-title-main">PLAYER <span class="hl-green">PROFILE</span></h2>
+      <div class="stage-divider-line">PRESS A TO CONTINUE</div>
     </div>
 
     <div class="about-grid">
-      <!-- Character card -->
-      <div class="char-card reveal-left">
-        <div class="char-avatar">
-          <img src="assets/img/team/avatar - Copy.jpg" alt="Vu Huy Truong">
-        </div>
-        <div class="char-class">Game Developer</div>
-        <div class="char-name">Vu Huy Truong</div>
 
-        <div class="char-stats">
-          <div class="char-stat-row"><span>CLASS</span><span>Programmer</span></div>
-          <div class="char-stat-row"><span>LEVEL</span><span>7 Years EXP</span></div>
-          <div class="char-stat-row"><span>ENGINE</span><span>Unity / C++</span></div>
-          <div class="char-stat-row"><span>BASE</span><span>HCM City, VN</span></div>
-          <div class="char-stat-row"><span>EMAIL</span><span>vuhuytruong1996@gmail.com</span></div>
-        </div>
-
-        <a href="assets/CV/VuHuyTruong_Resume.pdf" class="btn-primary char-cv" target="_blank">
-          <i class="fa-solid fa-file-arrow-down"></i>Download Resume
-        </a>
-
-        <div class="social-links">
-          <a href="https://www.facebook.com/HuyTruong19x/" class="social-link" target="_blank" title="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/huytruong-gamedev/" class="social-link" target="_blank" title="LinkedIn">
-            <i class="fa-brands fa-linkedin-in"></i>
-          </a>
-          <a href="https://github.com/HuyTruong19x" class="social-link" target="_blank" title="GitHub">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a href="https://join.skype.com/invite/U1NZfhVahE7R" class="social-link" target="_blank" title="Skype">
-            <i class="fa-brands fa-skype"></i>
-          </a>
+      <!-- Left: Pixel character card -->
+      <div class="reveal-left">
+        <div class="char-card">
+          <div class="char-card-bar">
+            <span>CHAR SELECT</span><span>P1</span>
+          </div>
+          <div class="char-card-photo">
+            <img src="assets/img/team/avatar - Copy.jpg" alt="Vu Huy Truong">
+          </div>
+          <div class="char-card-body">
+            <div class="char-name-px">VU HUY<br>TRUONG</div>
+            <div class="char-stat"><span class="char-stat-k">CLASS</span><span class="char-stat-v red">Game Developer</span></div>
+            <div class="char-stat"><span class="char-stat-k">LVL</span><span class="char-stat-v">7 YRS EXP</span></div>
+            <div class="char-stat"><span class="char-stat-k">ENGINE</span><span class="char-stat-v">Unity / C++</span></div>
+            <div class="char-stat"><span class="char-stat-k">BASE</span><span class="char-stat-v">HCM City, VN</span></div>
+            <div class="char-stat"><span class="char-stat-k">MAIL</span><span class="char-stat-v" style="font-size:12px">vuhuytruong1996@gmail.com</span></div>
+            <div class="char-socials">
+              <a href="https://www.facebook.com/HuyTruong19x/" class="char-social" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="https://www.linkedin.com/in/huytruong-gamedev/" class="char-social" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://github.com/HuyTruong19x" class="char-social" target="_blank"><i class="fa-brands fa-github"></i></a>
+              <a href="https://join.skype.com/invite/U1NZfhVahE7R" class="char-social" target="_blank"><i class="fa-brands fa-skype"></i></a>
+            </div>
+            <a href="assets/CV/VuHuyTruong_Resume.pdf" class="char-cv-btn" target="_blank">
+              <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD RESUME
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Bio + Skills -->
+      <!-- Right: RPG dialog box -->
       <div class="reveal-right">
-        <h3 class="bio-heading">Hi, I'm <span>Truong</span></h3>
+        <div class="dialog-box">
+          <div class="dialog-bar">
+            <div class="terminal-dot" style="background:#FF5F56"></div>
+            <div class="terminal-dot" style="background:#FFBD2E"></div>
+            <div class="terminal-dot" style="background:#27C93F"></div>
+            <div class="dialog-bar-title">PLAYER_BIO.TXT — READ ONLY</div>
+          </div>
+          <div class="dialog-body">
+            <div class="dialog-prompt">
+              <span class="dp-u">vht</span><span class="dp-d">@game-engine</span><span>:~$ cat bio.txt</span>
+            </div>
+            <div class="dialog-text">
+              Game Developer with <strong>7 years</strong> of experience building
+              production-ready games in <strong>C++</strong> and <strong>Unity</strong>
+              across WebGL and mobile platforms.<br><br>
+              Led core systems for a large-scale WebGL game with blockchain integration —
+              generating <span class="hl"><strong>$8M+ in revenue</strong></span>.
+              Deep expertise in NFT verification, wallet-based auth, and token-driven gameplay.<br><br>
+              Interviewed, mentored developers, conducted code reviews and architectural
+              decisions. Fluent working with distributed international teams.
+            </div>
 
-        <p class="bio-text">
-          Game Developer with <strong>7 years</strong> of experience building production-ready games using
-          <strong>C++</strong> and <strong>Unity</strong> across WebGL and mobile platforms. Strong expertise
-          in core gameplay architecture, scalable system design, and performance optimization for
-          browser-based environments.
-        </p>
-        <p class="bio-text">
-          Led development of core systems for a large-scale WebGL game with blockchain integration,
-          contributing to a product generating <strong>$8M+ in revenue</strong>. Experienced in
-          client-side integration with blockchain-enabled backend services — NFT verification,
-          wallet-based authentication, and token-driven gameplay.
-        </p>
-        <p class="bio-text">
-          Actively participated in technical interviews, mentoring developers, conducting code reviews,
-          and contributing to architectural decisions. Comfortable in distributed international teams
-          across time zones.
-        </p>
-
-        <!-- Skills -->
-        <div class="skills-section" style="margin-top:32px;">
-          <div class="skills-label">// STATS</div>
-
-          <div class="skill-row">
-            <div class="skill-meta"><span>Unity</span><span>90%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="90%"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-meta"><span>C# / .NET</span><span>88%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="88%"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-meta"><span>C++</span><span>82%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="82%"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-meta"><span>Game Design</span><span>76%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="76%"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-meta"><span>WebGL / Optimization</span><span>80%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="80%"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-meta"><span>Web3 / Blockchain</span><span>65%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="65%"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-meta"><span>AR / XR</span><span>55%</span></div>
-            <div class="skill-bar"><div class="skill-fill" data-pct="55%"></div></div>
+            <div class="dialog-prompt" style="margin-top:4px;">
+              <span class="dp-u">vht</span><span class="dp-d">@game-engine</span><span>:~$ ./stats --show</span>
+            </div>
+            <div class="stat-bars" style="margin-top:10px;">
+              <div class="stat-bar-row">
+                <div class="stat-bar-meta"><span class="stat-bar-name">UNITY</span><span class="stat-bar-val">90 XP</span></div>
+                <div class="stat-bar-track"><div class="skill-fill" data-pct="90%"></div></div>
+              </div>
+              <div class="stat-bar-row">
+                <div class="stat-bar-meta"><span class="stat-bar-name">C# / .NET</span><span class="stat-bar-val">88 XP</span></div>
+                <div class="stat-bar-track"><div class="skill-fill" data-pct="88%"></div></div>
+              </div>
+              <div class="stat-bar-row">
+                <div class="stat-bar-meta"><span class="stat-bar-name">C++</span><span class="stat-bar-val">82 XP</span></div>
+                <div class="stat-bar-track"><div class="skill-fill" data-pct="82%"></div></div>
+              </div>
+              <div class="stat-bar-row">
+                <div class="stat-bar-meta"><span class="stat-bar-name">WEBGL / OPT.</span><span class="stat-bar-val">80 XP</span></div>
+                <div class="stat-bar-track"><div class="skill-fill" data-pct="80%"></div></div>
+              </div>
+              <div class="stat-bar-row">
+                <div class="stat-bar-meta"><span class="stat-bar-name">GAME DESIGN</span><span class="stat-bar-val">76 XP</span></div>
+                <div class="stat-bar-track"><div class="skill-fill" data-pct="76%"></div></div>
+              </div>
+              <div class="stat-bar-row">
+                <div class="stat-bar-meta"><span class="stat-bar-name">WEB3 / NFT</span><span class="stat-bar-val">65 XP</span></div>
+                <div class="stat-bar-track"><div class="skill-fill" data-pct="65%"></div></div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SKILLS — POWER-UP INVENTORY
+═══════════════════════════════════════ -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="stage-header reveal">
+      <div class="stage-eyebrow">// STAGE 02 — ITEM SHOP //</div>
+      <h2 class="stage-title-main">POWER-UP <span class="hl-yellow">INVENTORY</span></h2>
+      <div class="stage-divider-line">SELECT WEAPON</div>
+    </div>
+
+    <div class="powerup-grid">
+      <div class="inventory-header reveal">WEAPONS &amp; ENGINES</div>
+
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--cyan)"><i class="fa-brands fa-unity"></i></div>
+        <div class="pu-name">UNITY</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="90%"></div></div>
+        <div class="pu-level">LVL 90</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--pink)"><i class="fa-solid fa-code"></i></div>
+        <div class="pu-name">C# / .NET</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="88%"></div></div>
+        <div class="pu-level">LVL 88</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--orange)"><i class="fa-solid fa-microchip"></i></div>
+        <div class="pu-name">C++</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="82%"></div></div>
+        <div class="pu-level">LVL 82</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--yellow)"><i class="fa-solid fa-globe"></i></div>
+        <div class="pu-name">WEBGL</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="80%"></div></div>
+        <div class="pu-level">LVL 80</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--lime)"><i class="fa-solid fa-mobile-screen"></i></div>
+        <div class="pu-name">MOBILE</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="84%"></div></div>
+        <div class="pu-level">LVL 84</div>
+      </div>
+
+      <div class="inventory-header reveal">SPECIAL ABILITIES</div>
+
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:#9B59B6"><i class="fa-brands fa-ethereum"></i></div>
+        <div class="pu-name">WEB3 / NFT</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="65%"></div></div>
+        <div class="pu-level">LVL 65</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--cyan)"><i class="fa-solid fa-network-wired"></i></div>
+        <div class="pu-name">PHOTON</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="72%"></div></div>
+        <div class="pu-level">LVL 72</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--pink)"><i class="fa-solid fa-vr-cardboard"></i></div>
+        <div class="pu-name">AR / XR</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="55%"></div></div>
+        <div class="pu-level">LVL 55</div>
+      </div>
+
+      <div class="inventory-header reveal">EQUIPMENT &amp; TOOLS</div>
+
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--orange)"><i class="fa-brands fa-git-alt"></i></div>
+        <div class="pu-name">GIT</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="85%"></div></div>
+        <div class="pu-level">LVL 85</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--yellow)"><i class="fa-solid fa-server"></i></div>
+        <div class="pu-name">CI/CD</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="75%"></div></div>
+        <div class="pu-level">LVL 75</div>
+      </div>
+      <div class="powerup-box reveal">
+        <div class="pu-icon" style="color:var(--green)"><i class="fa-solid fa-gamepad"></i></div>
+        <div class="pu-name">GAME DESIGN</div>
+        <div class="pu-bar-track"><div class="pu-bar-fill skill-fill" data-pct="76%"></div></div>
+        <div class="pu-level">LVL 76</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     PROJECTS
-════════════════════════════════════════════════════ -->
+<!-- TICKER BAND 2 -->
+<div class="ticker-band">
+  <div class="ticker-track">
+    <span class="tk-coin">★ UNITY ENGINE</span><span>C# &amp; C++</span>
+    <span class="tk-coin">★ WEBGL PLATFORM</span><span>NFT INTEGRATION</span>
+    <span class="tk-coin">★ PHOTON NETWORK</span><span>JENKINS CI/CD</span>
+    <span class="tk-coin">★ AR FOUNDATION</span><span>STEAM SDK</span>
+    <span class="tk-coin">★ UNITY ENGINE</span><span>C# &amp; C++</span>
+    <span class="tk-coin">★ WEBGL PLATFORM</span><span>NFT INTEGRATION</span>
+    <span class="tk-coin">★ PHOTON NETWORK</span><span>JENKINS CI/CD</span>
+    <span class="tk-coin">★ AR FOUNDATION</span><span>STEAM SDK</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PROJECTS — STAGE SELECT
+═══════════════════════════════════════ -->
 <section id="projects" class="section">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">// MISSION LOG</div>
-      <h2 class="section-title">My <span>Projects</span></h2>
-      <div class="divider"></div>
+    <div class="stage-header reveal">
+      <div class="stage-eyebrow">// STAGE 03 — LEVEL SELECT //</div>
+      <h2 class="stage-title-main"><span class="hl-red">STAGE</span> SELECT</h2>
+      <div class="stage-divider-line">CHOOSE YOUR MISSION</div>
     </div>
 
-    <!-- Filter -->
-    <div class="filter-tabs reveal">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="mobile">Mobile</button>
-      <button class="filter-btn" data-filter="web3">Web3</button>
-      <button class="filter-btn" data-filter="webgl">WebGL</button>
-      <button class="filter-btn" data-filter="hypercasual">Hyper-Casual</button>
-      <button class="filter-btn" data-filter="gamejam">Game Jam</button>
-      <button class="filter-btn" data-filter="ar">AR</button>
-      <button class="filter-btn" data-filter="personal">Personal</button>
+    <!-- Weapon-select style filter -->
+    <div class="stage-filter reveal">
+      <button class="stage-filter-btn active" data-filter="all">ALL</button>
+      <button class="stage-filter-btn" data-filter="mobile">MOBILE</button>
+      <button class="stage-filter-btn" data-filter="web3">WEB3</button>
+      <button class="stage-filter-btn" data-filter="webgl">WEBGL</button>
+      <button class="stage-filter-btn" data-filter="hypercasual">HYPER-CASUAL</button>
+      <button class="stage-filter-btn" data-filter="gamejam">GAME JAM</button>
+      <button class="stage-filter-btn" data-filter="ar">AR</button>
+      <button class="stage-filter-btn" data-filter="personal">PERSONAL</button>
     </div>
 
-    <!-- Grid -->
-    <div class="projects-grid">
+    <div class="stages-grid">
 
-      <!-- Asphalt 9 -->
-      <div class="project-card reveal" data-cat="mobile featured">
-        <div class="card-img">
-          <img src="assets/img/projects/Asphalt9.jpg" alt="Asphalt 9: Legends">
-          <span class="card-badge badge-featured">★ Featured</span>
-        </div>
-        <div class="card-body">
-          <div class="card-company">Gameloft</div>
-          <div class="card-title">Asphalt 9: Legends</div>
-          <p class="card-desc">
-            High-speed arcade racing game with console-quality graphics, licensed supercars, and real-time multiplayer.
-            Surpassed <strong>100M downloads</strong> worldwide across mobile, PC, and cloud platforms.
-          </p>
-          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
-          <ul class="card-responsibility">
-            <li>Upgraded and maintained the Ads, Redeem, and CRM modules.</li>
-            <li>Shipped the game on <strong>Steam</strong> with full Steamworks integration (Achievements, Cloud Save, IAP).</li>
-            <li>Adapted the game for <strong>Facebook Cloud Gaming</strong> with full cloud SDK integration.</li>
-            <li>Applied modern C++ best practices: smart pointers, RAII, templates, improved memory management.</li>
-            <li>Researched and integrated third-party tech: CefSharp, Steam SDK, Facebook Cloud SDK, Amazon Services.</li>
-            <li>Maintained CI/CD pipelines on Jenkins for automated multi-platform builds.</li>
-            <li>Performed runtime performance optimization and resolved critical bugs.</li>
-          </ul>
-          <div class="card-tags">
-            <span class="tag">C++</span><span class="tag">Mobile</span>
-            <span class="tag">Steam</span><span class="tag">CI/CD</span><span class="tag">Jenkins</span>
+      <!-- STAGE 01: Asphalt 9 -->
+      <div class="stage-card reveal" data-cat="mobile featured">
+        <div class="stage-titlebar" style="background:#000088">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 01</span>
+            <span class="stage-win-title">ASPHALT9.EXE</span>
           </div>
-          <div class="card-actions">
-            <a href="https://store.steampowered.com/app/1815780" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-brands fa-steam"></i>Steam
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
+        </div>
+        <div class="stage-img">
+          <img src="assets/img/projects/Asphalt9.jpg" alt="Asphalt 9: Legends">
+          <div class="stage-img-scan"></div>
+          <div class="stage-badge sb-boss">BOSS STAGE</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-company">GAMELOFT</div>
+          <div class="stage-name">ASPHALT 9: LEGENDS</div>
+          <p class="stage-desc">
+            High-speed arcade racing with console-quality graphics and real-time multiplayer.
+            Surpassed <strong>100M downloads</strong> worldwide across mobile, PC, and cloud.
+          </p>
+          <button class="win-toggle">▼ MISSION BRIEFING</button>
+          <ul class="win-resp">
+            <li>Upgraded Ads, Redeem, and CRM modules.</li>
+            <li>Shipped on <strong>Steam</strong> — full Steamworks (Achievements, Cloud Save, IAP).</li>
+            <li>Adapted for <strong>Facebook Cloud Gaming</strong> with cloud SDK integration.</li>
+            <li>Applied modern C++: smart pointers, RAII, templates.</li>
+            <li>Integrated CefSharp, Steam SDK, Facebook Cloud SDK, Amazon Services.</li>
+            <li>Maintained Jenkins CI/CD pipelines for multi-platform builds.</li>
+          </ul>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">C++</span><span class="stage-tag-chip">MOBILE</span>
+            <span class="stage-tag-chip">STEAM</span><span class="stage-tag-chip">CI/CD</span>
+          </div>
+          <div class="stage-actions">
+            <a href="https://store.steampowered.com/app/1815780" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-brands fa-steam"></i>STEAM
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA9HM" class="card-btn card-btn-ghost" target="_blank">
-              <i class="fa-brands fa-google-play"></i>Android
+            <a href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA9HM" class="stage-btn sb-ghost" target="_blank">
+              <i class="fa-brands fa-google-play"></i>ANDROID
             </a>
           </div>
         </div>
       </div>
 
-      <!-- LOL Land -->
-      <div class="project-card reveal" data-cat="web3 webgl featured">
-        <div class="card-img">
-          <img src="assets/img/projects/LOL_Land.png" alt="LOL Land">
-          <span class="card-badge badge-web3">Web3</span>
+      <!-- STAGE 02: LOL Land -->
+      <div class="stage-card reveal" data-cat="web3 webgl featured">
+        <div class="stage-titlebar" style="background:#440088">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 02</span>
+            <span class="stage-win-title">LOLLAND.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Yield Guild Games — Hype Reel</div>
-          <div class="card-title">LOL Land</div>
-          <p class="card-desc">
-            Browser-based Web3 board game combining casual gameplay with blockchain rewards and NFT features.
+        <div class="stage-img">
+          <img src="assets/img/projects/LOL_Land.png" alt="LOL Land">
+          <div class="stage-img-scan"></div>
+          <div class="stage-badge sb-new">★ NEW</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-company">YIELD GUILD GAMES — HYPE REEL</div>
+          <div class="stage-name">LOL LAND</div>
+          <p class="stage-desc">
+            Browser-based Web3 board game with blockchain rewards and NFT features.
             Generated <strong>$8M+ cumulative revenue</strong> since May 2025 launch.
           </p>
-          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
-          <ul class="card-responsibility">
-            <li>Architected and implemented core gameplay systems and modular game framework.</li>
-            <li>Developed and optimized scalable UI systems for WebGL platform.</li>
-            <li>Integrated Unity client with blockchain-enabled backend services (NFT verification, wallet-based features, reward flows).</li>
-            <li>Implemented client-side handling of asynchronous blockchain transaction states.</li>
-            <li>Optimized WebGL performance: memory usage, asset loading, and runtime efficiency.</li>
-            <li>Designed and maintained Jenkins CI/CD pipelines for automated builds and configuration management.</li>
-            <li>Collaborated with distributed international teams across time zones.</li>
+          <button class="win-toggle">▼ MISSION BRIEFING</button>
+          <ul class="win-resp">
+            <li>Architected core gameplay systems and modular game framework.</li>
+            <li>Developed scalable UI systems for WebGL platform.</li>
+            <li>Integrated Unity client with blockchain backend (NFT, wallet, reward flows).</li>
+            <li>Implemented async blockchain transaction state handling.</li>
+            <li>Optimized WebGL performance: memory, asset loading, runtime efficiency.</li>
           </ul>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">WebGL</span><span class="tag">NFT</span><span class="tag">Web3</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span>
+            <span class="stage-tag-chip">WEBGL</span><span class="stage-tag-chip">NFT</span><span class="stage-tag-chip">WEB3</span>
           </div>
-          <div class="card-actions">
-            <a href="https://www.lol.land" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-solid fa-globe"></i>Play Game
+          <div class="stage-actions">
+            <a href="https://www.lol.land" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-solid fa-globe"></i>PLAY
             </a>
-            <a href="https://x.com/lollandgame" class="card-btn card-btn-ghost" target="_blank">
-              <i class="fa-brands fa-x-twitter"></i>Social
+            <a href="https://x.com/lollandgame" class="stage-btn sb-ghost" target="_blank">
+              <i class="fa-brands fa-x-twitter"></i>SOCIAL
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Live Breeder -->
-      <div class="project-card reveal" data-cat="web3 webgl">
-        <div class="card-img">
+      <!-- STAGE 03: Live Breeder -->
+      <div class="stage-card reveal" data-cat="web3 webgl">
+        <div class="stage-titlebar" style="background:#004400">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 03</span>
+            <span class="stage-win-title">LIVEBREEDER.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
+        </div>
+        <div class="stage-img">
           <img src="assets/img/projects/LiveBreeder_1.png" alt="Live Breeder">
-          <span class="card-badge badge-web3">WebGL</span>
+          <div class="stage-img-scan"></div>
+          <div class="stage-badge sb-complete">COMPLETE</div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Indigames Inc</div>
-          <div class="card-title">Live Breeder</div>
-          <p class="card-desc">
-            Live game running on WebGL inside a client app. Breed, feed, and train monsters for PVE and PVP battles.
-            Includes real-time viewer interaction via websocket.
+        <div class="stage-body">
+          <div class="stage-company">INDIGAMES INC</div>
+          <div class="stage-name">LIVE BREEDER</div>
+          <p class="stage-desc">
+            Live WebGL game inside a mobile app. Breed, feed, and train monsters for PVE/PVP battles
+            with real-time viewer interaction via WebSocket.
           </p>
-          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
-          <ul class="card-responsibility">
-            <li>Designed and implemented battle logic and battle scene (UI, Animation, VFX).</li>
+          <button class="win-toggle">▼ MISSION BRIEFING</button>
+          <ul class="win-resp">
+            <li>Designed and implemented battle logic, UI, Animation, VFX.</li>
             <li>Handled PVP room management using Photon.</li>
-            <li>Built viewer-streamer interaction: heal HP or trigger skills from viewer side.</li>
-            <li>Distributed events from WebSocket using pub/sub system to drive monster actions.</li>
-            <li>Built custom Editor tools to accelerate development workflow.</li>
-            <li>Optimized loading performance and prevented crashes.</li>
+            <li>Built viewer-streamer interaction (heal HP / trigger skills).</li>
+            <li>Distributed WebSocket events via pub/sub to drive monster actions.</li>
+            <li>Optimized loading and prevented WebGL crashes.</li>
           </ul>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">WebGL</span><span class="tag">Photon</span><span class="tag">WebSocket</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span>
+            <span class="stage-tag-chip">WEBGL</span><span class="stage-tag-chip">PHOTON</span>
           </div>
-          <div class="card-actions">
-            <a href="https://www.youtube.com/watch?v=VF5yPmSUSEs" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-brands fa-youtube"></i>Gameplay
+          <div class="stage-actions">
+            <a href="https://www.youtube.com/watch?v=VF5yPmSUSEs" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-brands fa-youtube"></i>GAMEPLAY
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Crypto Quest -->
-      <div class="project-card reveal" data-cat="web3 webgl">
-        <div class="card-img">
+      <!-- STAGE 04: Crypto Quest -->
+      <div class="stage-card reveal" data-cat="web3 webgl">
+        <div class="stage-titlebar" style="background:#884400">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 04</span>
+            <span class="stage-win-title">CRYPTOQUEST.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
+        </div>
+        <div class="stage-img">
           <img src="assets/img/projects/CryptoQuest.png" alt="Crypto Quest">
-          <span class="card-badge badge-web3">NFT RPG</span>
+          <div class="stage-img-scan"></div>
+          <div class="stage-badge sb-web3">NFT RPG</div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Indigames Inc</div>
-          <div class="card-title">Crypto Quest</div>
-          <p class="card-desc">
-            Retro pixel-art RPG with NFT integration. Players explore a pixelated world, battle enemies,
-            collect tokens, and interact with on-chain assets via Dimension Box NFTs.
+        <div class="stage-body">
+          <div class="stage-company">INDIGAMES INC</div>
+          <div class="stage-name">CRYPTO QUEST</div>
+          <p class="stage-desc">
+            Retro pixel-art RPG with NFT integration. Explore, battle, and collect tokens.
+            On-chain assets via Dimension Box NFTs.
           </p>
-          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
-          <ul class="card-responsibility">
-            <li>Designed and implemented Shop system and Savepoint system.</li>
+          <button class="win-toggle">▼ MISSION BRIEFING</button>
+          <ul class="win-resp">
+            <li>Designed Shop system and Savepoint system.</li>
             <li>Integrated Dimension Box NFT system.</li>
-            <li>Built character preview stats panel for item selection.</li>
-            <li>Created custom Tiled plugin to auto-place shops and savepoints from map editor to Unity.</li>
+            <li>Built character preview stats for item selection.</li>
+            <li>Created Tiled plugin to auto-place game objects.</li>
           </ul>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">WebGL</span><span class="tag">NFT</span><span class="tag">Pixel Art</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span>
+            <span class="stage-tag-chip">WEBGL</span><span class="stage-tag-chip">NFT</span>
           </div>
-          <div class="card-actions">
-            <a href="https://crypto-quest.org/" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-solid fa-globe"></i>Website
+          <div class="stage-actions">
+            <a href="https://crypto-quest.org/" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-solid fa-globe"></i>WEBSITE
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Big Escape -->
-      <div class="project-card reveal" data-cat="hypercasual mobile webgl">
-        <div class="card-img">
-          <img src="assets/img/projects/BigEscape.png" alt="Big Escape">
+      <!-- STAGE 05: Big Escape -->
+      <div class="stage-card reveal" data-cat="hypercasual mobile webgl">
+        <div class="stage-titlebar" style="background:#880000">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 05</span>
+            <span class="stage-win-title">BIGESCAPE.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Indigames Inc</div>
-          <div class="card-title">Big Escape</div>
-          <p class="card-desc">
-            Hyper-casual game combining escape and shooting. Players run from and shoot massive monsters
-            chasing them across procedural paths.
+        <div class="stage-img">
+          <img src="assets/img/projects/BigEscape.png" alt="Big Escape">
+          <div class="stage-img-scan"></div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-company">INDIGAMES INC</div>
+          <div class="stage-name">BIG ESCAPE</div>
+          <p class="stage-desc">
+            Hyper-casual escape + shooting game. Run from giant monsters across
+            procedurally generated paths.
           </p>
-          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
-          <ul class="card-responsibility">
-            <li>Path creator plugin integration for procedural level design.</li>
+          <button class="win-toggle">▼ MISSION BRIEFING</button>
+          <ul class="win-resp">
+            <li>Path creator plugin for procedural level design.</li>
             <li>Particle and VFX system implementation.</li>
             <li>DOTween animation integration.</li>
             <li>Integrated Applovin MAX SDK for monetization.</li>
-            <li>JavaScript plugin bridge for WebGL platform.</li>
           </ul>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">Android</span><span class="tag">WebGL</span><span class="tag">Applovin</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span>
+            <span class="stage-tag-chip">ANDROID</span><span class="stage-tag-chip">WEBGL</span>
           </div>
-          <div class="card-actions">
-            <a href="https://kantan.game/easygame/game/514" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-solid fa-gamepad"></i>Play Game
+          <div class="stage-actions">
+            <a href="https://kantan.game/easygame/game/514" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-solid fa-gamepad"></i>PLAY
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Vegetable Puzzle -->
-      <div class="project-card reveal" data-cat="hypercasual webgl">
-        <div class="card-img">
-          <img src="assets/img/projects/VegetablePuzzle.png" alt="Vegetable Puzzle">
+      <!-- STAGE 06: Vegetable Puzzle -->
+      <div class="stage-card reveal" data-cat="hypercasual webgl">
+        <div class="stage-titlebar" style="background:#006644">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 06</span>
+            <span class="stage-win-title">VEGPUZZLE.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Indigames Inc</div>
-          <div class="card-title">Vegetable Puzzle</div>
-          <p class="card-desc">
-            Hyper-casual Tetris-inspired puzzle. Fill the basket with fruit and vegetable shaped pieces.
-            Ranked <strong>#1 most-liked new game</strong> on Kantan GameBox.
+        <div class="stage-img">
+          <img src="assets/img/projects/VegetablePuzzle.png" alt="Vegetable Puzzle">
+          <div class="stage-img-scan"></div>
+          <div class="stage-badge sb-complete">#1 LIKED</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-company">INDIGAMES INC</div>
+          <div class="stage-name">VEGETABLE PUZZLE</div>
+          <p class="stage-desc">
+            Tetris-inspired hyper-casual puzzle. Ranked <strong>#1 most-liked new game</strong>
+            on Kantan GameBox.
           </p>
-          <button class="card-details-toggle">▼ SHOW RESPONSIBILITIES</button>
-          <ul class="card-responsibility">
-            <li>Spine animation integration for character animations.</li>
+          <button class="win-toggle">▼ MISSION BRIEFING</button>
+          <ul class="win-resp">
+            <li>Spine animation integration.</li>
             <li>DOTween animation for UI and piece movement.</li>
             <li>JavaScript plugin bridge for WebGL platform.</li>
           </ul>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">WebGL</span><span class="tag">Spine</span><span class="tag">DOTween</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span>
+            <span class="stage-tag-chip">WEBGL</span><span class="stage-tag-chip">SPINE</span>
           </div>
-          <div class="card-actions">
-            <a href="https://kantan.game/lightgame/game/513" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-solid fa-gamepad"></i>Play Game
+          <div class="stage-actions">
+            <a href="https://kantan.game/lightgame/game/513" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-solid fa-gamepad"></i>PLAY
             </a>
           </div>
         </div>
       </div>
 
-      <!-- MEW Dungeon -->
-      <div class="project-card reveal" data-cat="gamejam">
-        <div class="card-img">
+      <!-- STAGE 07: MEW Dungeon -->
+      <div class="stage-card reveal" data-cat="gamejam">
+        <div class="stage-titlebar" style="background:#4a0080">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 07</span>
+            <span class="stage-win-title">MEWDUNGEON.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
+        </div>
+        <div class="stage-img">
           <img src="assets/img/projects/MewDungeon.png" alt="MEW Dungeon of Wonders">
-          <span class="card-badge badge-gamejam">#2 Place</span>
+          <div class="stage-img-scan"></div>
+          <div class="stage-badge sb-complete">#2 PLACE</div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Game Jam — International Team</div>
-          <div class="card-title">MEW Dungeon of Wonders</div>
-          <p class="card-desc">
-            Collaborated with developers from the USA and Germany on a Discord game jam contest.
-            The game achieved <strong>#2 ranking</strong> in the competition.
+        <div class="stage-body">
+          <div class="stage-company">GAME JAM — INTERNATIONAL TEAM</div>
+          <div class="stage-name">MEW DUNGEON OF WONDERS</div>
+          <p class="stage-desc">
+            Collaborated with devs from USA and Germany via Discord.
+            Achieved <strong>#2 ranking</strong> in the competition.
           </p>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">Game Jam</span><span class="tag">Remote Team</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span><span class="stage-tag-chip">GAME JAM</span>
           </div>
-          <div class="card-actions">
-            <a href="https://pixitales.itch.io/mew-dungeon-of-wonders" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-brands fa-itch-io"></i>itch.io
+          <div class="stage-actions">
+            <a href="https://pixitales.itch.io/mew-dungeon-of-wonders" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-brands fa-itch-io"></i>ITCH.IO
             </a>
           </div>
         </div>
       </div>
 
-      <!-- LINE 98 AR -->
-      <div class="project-card reveal" data-cat="ar personal">
-        <div class="card-img" style="background:#0a1020; display:flex; align-items:center; justify-content:center; min-height:160px;">
-          <i class="fa-solid fa-vr-cardboard" style="font-size:64px; color:rgba(0,212,255,.25);"></i>
-        </div>
-        <div class="card-body">
-          <div class="card-company">Personal Project</div>
-          <div class="card-title">LINE 98 AR</div>
-          <p class="card-desc">
-            Classic LINE 98 board game brought into augmented reality using AR Foundation.
-            Detects real-world planes and renders a fully playable game board in physical space.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">AR Foundation</span><span class="tag">Mobile</span>
+      <!-- STAGE 08: LINE 98 AR -->
+      <div class="stage-card reveal" data-cat="ar personal">
+        <div class="stage-titlebar" style="background:#003388">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 08</span>
+            <span class="stage-win-title">LINE98AR.EXE</span>
           </div>
-          <div class="card-actions">
-            <a href="https://github.com/HuyTruong19x/Lines" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-brands fa-github"></i>GitHub
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
+        </div>
+        <div class="stage-img" style="background:#050010;display:flex;align-items:center;justify-content:center;min-height:160px;">
+          <i class="fa-solid fa-vr-cardboard" style="font-size:56px;color:rgba(0,200,255,.4);"></i>
+        </div>
+        <div class="stage-body">
+          <div class="stage-company">PERSONAL PROJECT</div>
+          <div class="stage-name">LINE 98 AR</div>
+          <p class="stage-desc">
+            Classic LINE 98 in augmented reality using AR Foundation.
+            Detects real-world planes and renders a fully playable game board.
+          </p>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span><span class="stage-tag-chip">AR FOUNDATION</span>
+          </div>
+          <div class="stage-actions">
+            <a href="https://github.com/HuyTruong19x/Lines" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-brands fa-github"></i>GITHUB
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Mirror Networking -->
-      <div class="project-card reveal" data-cat="personal">
-        <div class="card-img" style="background:#0a1020; display:flex; align-items:center; justify-content:center; min-height:160px;">
-          <i class="fa-solid fa-network-wired" style="font-size:64px; color:rgba(0,212,255,.25);"></i>
+      <!-- STAGE 09: Mirror Networking -->
+      <div class="stage-card reveal" data-cat="personal">
+        <div class="stage-titlebar" style="background:#222">
+          <div class="stage-titlebar-left">
+            <span class="stage-num">STAGE 09</span>
+            <span class="stage-win-title">MIRROR_NET.EXE</span>
+          </div>
+          <div class="stage-win-btns">
+            <div class="stage-win-btn">─</div><div class="stage-win-btn">□</div><div class="stage-win-btn">✕</div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-company">Personal Project</div>
-          <div class="card-title">Dedicated Mirror Networking</div>
-          <p class="card-desc">
+        <div class="stage-img" style="background:#050010;display:flex;align-items:center;justify-content:center;min-height:160px;">
+          <i class="fa-solid fa-network-wired" style="font-size:56px;color:rgba(0,255,65,.3);"></i>
+        </div>
+        <div class="stage-body">
+          <div class="stage-company">PERSONAL PROJECT</div>
+          <div class="stage-name">DEDICATED MIRROR NETWORKING</div>
+          <p class="stage-desc">
             Research project exploring multiplayer networking with Mirror framework.
-            Inspired by social deduction games like Among Us and Goose Goose Duck.
+            Inspired by Among Us and Goose Goose Duck.
           </p>
-          <div class="card-tags">
-            <span class="tag">Unity</span><span class="tag">C#</span>
-            <span class="tag">Mirror</span><span class="tag">Multiplayer</span>
+          <div class="stage-tags">
+            <span class="stage-tag-chip">UNITY</span><span class="stage-tag-chip">C#</span>
+            <span class="stage-tag-chip">MIRROR</span><span class="stage-tag-chip">MULTIPLAYER</span>
           </div>
-          <div class="card-actions">
-            <a href="https://github.com/HuyTruong19x/Mirror_2D" class="card-btn card-btn-primary" target="_blank">
-              <i class="fa-brands fa-github"></i>GitHub
+          <div class="stage-actions">
+            <a href="https://github.com/HuyTruong19x/Mirror_2D" class="stage-btn sb-primary" target="_blank">
+              <i class="fa-brands fa-github"></i>GITHUB
             </a>
           </div>
         </div>
       </div>
 
-    </div><!-- /projects-grid -->
+    </div><!-- /stages-grid -->
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     CONTACT
-════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     EXPERIENCE — MISSION LOG / SAVE SLOTS
+═══════════════════════════════════════ -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="stage-header reveal">
+      <div class="stage-eyebrow">// STAGE 04 — MISSION ARCHIVE //</div>
+      <h2 class="stage-title-main">MISSION <span class="hl-orange">LOG</span></h2>
+      <div class="stage-divider-line">SAVE DATA LOADED</div>
+    </div>
+
+    <div class="mission-log">
+
+      <div class="save-slot">
+        <div class="save-num">
+          <span class="save-num-label">SAVE</span>
+          <span class="save-num-val">01</span>
+          <span class="save-num-stars">★★★★★</span>
+        </div>
+        <div class="save-data">
+          <div class="save-header">
+            <div class="save-company">YIELD GUILD GAMES — HYPE REEL</div>
+            <div class="save-period">2023 — 2025</div>
+          </div>
+          <div class="save-role">Senior Unity Developer</div>
+          <div class="save-products">
+            <span class="save-product">LOL Land</span>
+          </div>
+          <ul class="save-desc">
+            <li>Architected core gameplay and modular framework for browser-based Web3 board game.</li>
+            <li>Integrated Unity client with blockchain backend — NFT, wallet auth, reward flows.</li>
+            <li>Optimized WebGL: memory management, asset loading, runtime efficiency.</li>
+            <li>Product launched May 2025 — generating <strong>$8M+ cumulative revenue</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="save-slot">
+        <div class="save-num">
+          <span class="save-num-label">SAVE</span>
+          <span class="save-num-val">02</span>
+          <span class="save-num-stars">★★★★☆</span>
+        </div>
+        <div class="save-data">
+          <div class="save-header">
+            <div class="save-company">GAMELOFT</div>
+            <div class="save-period">2021 — 2023</div>
+          </div>
+          <div class="save-role">C++ Game Developer</div>
+          <div class="save-products">
+            <span class="save-product">Asphalt 9: Legends</span>
+          </div>
+          <ul class="save-desc">
+            <li>Upgraded Ads, Redeem, and CRM modules with modern C++ (RAII, templates).</li>
+            <li>Shipped on <strong>Steam</strong> — Steamworks Achievements, Cloud Save, IAP.</li>
+            <li>Adapted for <strong>Facebook Cloud Gaming</strong> with streaming optimizations.</li>
+            <li>Integrated CefSharp, Steam SDK, Facebook Cloud SDK, Amazon Services.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="save-slot">
+        <div class="save-num">
+          <span class="save-num-label">SAVE</span>
+          <span class="save-num-val">03</span>
+          <span class="save-num-stars">★★★★☆</span>
+        </div>
+        <div class="save-data">
+          <div class="save-header">
+            <div class="save-company">INDIGAMES INC</div>
+            <div class="save-period">2019 — 2021</div>
+          </div>
+          <div class="save-role">Unity Game Developer</div>
+          <div class="save-products">
+            <span class="save-product">Live Breeder</span>
+            <span class="save-product">Crypto Quest</span>
+            <span class="save-product">Big Escape</span>
+            <span class="save-product">Vegetable Puzzle</span>
+          </div>
+          <ul class="save-desc">
+            <li>Designed battle systems, UI, Animation, and VFX for multiple WebGL titles.</li>
+            <li>Integrated Photon for real-time PVP room management.</li>
+            <li>Built viewer-streamer interaction layer via WebSocket pub/sub.</li>
+            <li>NFT systems, Shop, Savepoint, and Tiled plugin for Crypto Quest.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="save-slot">
+        <div class="save-num">
+          <span class="save-num-label">SAVE</span>
+          <span class="save-num-val">04</span>
+          <span class="save-num-stars">★★★☆☆</span>
+        </div>
+        <div class="save-data">
+          <div class="save-header">
+            <div class="save-company">INDEPENDENT PROJECTS</div>
+            <div class="save-period">2017 — 2019</div>
+          </div>
+          <div class="save-role">Game Developer / Game Jam</div>
+          <div class="save-products">
+            <span class="save-product">LINE 98 AR</span>
+            <span class="save-product">Mirror Net</span>
+            <span class="save-product">MEW Dungeon</span>
+          </div>
+          <ul class="save-desc">
+            <li>Built AR Foundation app overlaying LINE 98 board on real-world surfaces.</li>
+            <li>Researched Mirror multiplayer — server-authoritative Among Us-style networking.</li>
+            <li>International game jam (USA &amp; Germany) — <strong>#2 ranking</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT — TERMINAL / FINAL STAGE
+═══════════════════════════════════════ -->
 <section id="contact" class="section">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">// JOIN PARTY</div>
-      <h2 class="section-title">Contact <span>/ Hire Me</span></h2>
-      <div class="divider"></div>
+    <div class="stage-header reveal">
+      <div class="stage-eyebrow">// STAGE 05 — FINAL BOSS //</div>
+      <h2 class="stage-title-main">OPEN <span class="hl-green">COMMS</span></h2>
+      <div class="stage-divider-line">TRANSMISSION READY</div>
     </div>
 
     <div class="contact-grid">
+
       <!-- Info -->
       <div class="reveal-left">
-        <div class="contact-info-label">// Open for Opportunities</div>
-        <h3 class="contact-info-title">Let's Build Something Great</h3>
-        <p class="contact-info-text">
-          Available for full-time roles, contract work, and interesting game projects.
-          I respond to all messages within 24 hours.
+        <div class="contact-stage-tag">// ACCEPTING MISSIONS</div>
+        <h3 class="contact-title">LET'S BUILD<br>SOMETHING<br>LEGENDARY</h3>
+        <p class="contact-desc">
+          Available for full-time roles, contracts, and interesting game projects.
+          Response within 24 hours.
         </p>
 
-        <div class="contact-detail">
-          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-          <div class="contact-detail-text">57 Street 51, Binh Thuan Ward, Ho Chi Minh City</div>
+        <div class="contact-card">
+          <div class="contact-card-ico"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-card-text">57 Street 51, Binh Thuan Ward, Ho Chi Minh City</div>
         </div>
-        <div class="contact-detail">
-          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-          <div class="contact-detail-text">+84 335 112 009</div>
+        <div class="contact-card">
+          <div class="contact-card-ico"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-card-text">+84 335 112 009</div>
         </div>
-        <div class="contact-detail">
-          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-          <div class="contact-detail-text">vuhuytruong1996@gmail.com</div>
+        <div class="contact-card">
+          <div class="contact-card-ico"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-card-text">vuhuytruong1996@gmail.com</div>
         </div>
-        <div class="contact-detail">
-          <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
-          <div class="contact-detail-text">
+        <div class="contact-card">
+          <div class="contact-card-ico"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div class="contact-card-text">
             <a href="https://www.linkedin.com/in/huytruong-gamedev/" target="_blank">linkedin.com/in/huytruong-gamedev</a>
           </div>
         </div>
       </div>
 
-      <!-- Form -->
+      <!-- Terminal form -->
       <div class="reveal-right">
-        <form id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" placeholder="Your name" required>
+        <div class="terminal-panel">
+          <div class="terminal-titlebar">
+            <div class="terminal-dots">
+              <div class="terminal-dot" style="background:#FF5F56"></div>
+              <div class="terminal-dot" style="background:#FFBD2E"></div>
+              <div class="terminal-dot" style="background:#27C93F"></div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="your@email.com" required>
+            <div class="terminal-titlebar-title">SECURE_CHANNEL.EXE — TRANSMISSION</div>
+          </div>
+          <div class="terminal-body">
+            <div class="tf-prompt">
+              <span class="tp-u">vht</span><span class="tp-d">@secure-channel</span><span>:~$ ./contact --open</span>
             </div>
+            <form id="contact-form" style="margin-top:16px;">
+              <div class="tf-row">
+                <div class="tf-group">
+                  <label class="tf-label">CALL SIGN</label>
+                  <input type="text" class="tf-input" placeholder="Your name" required>
+                </div>
+                <div class="tf-group">
+                  <label class="tf-label">FREQUENCY</label>
+                  <input type="email" class="tf-input" placeholder="your@email.com" required>
+                </div>
+              </div>
+              <div class="tf-group">
+                <label class="tf-label">MISSION TYPE</label>
+                <input type="text" class="tf-input" placeholder="Job offer / Freelance / Collab" required>
+              </div>
+              <div class="tf-group">
+                <label class="tf-label">TRANSMISSION</label>
+                <textarea class="tf-input" rows="5" placeholder="Describe the mission..." required></textarea>
+              </div>
+              <button type="submit" class="tf-submit">▶ FIRE TRANSMISSION</button>
+            </form>
           </div>
-          <div class="form-group">
-            <label class="form-label">Subject</label>
-            <input type="text" class="form-control" placeholder="Job offer / Freelance / Collab" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea class="form-control" rows="5" placeholder="Tell me about the project..." required></textarea>
-          </div>
-          <button type="submit" class="btn-submit">► SEND MESSAGE</button>
-        </form>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      FOOTER
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><span>V</span>HT — VU HUY TRUONG</div>
-    <div class="footer-copy">Built with <span>♥</span> &amp; lots of coffee &nbsp;·&nbsp; © 2025</div>
+    <div class="footer-logo">VHT</div>
+    <div class="footer-copy">© 2025 &nbsp;|&nbsp; MADE WITH <span>♥</span> &amp; LOTS OF COFFEE</div>
+    <div class="footer-links">
+      <a href="#hero">HOME</a>
+      <a href="#projects">STAGES</a>
+      <a href="#contact">CONTACT</a>
+    </div>
   </div>
+  <div class="footer-game-over">— GAME OVER — INSERT COIN TO CONTINUE —</div>
 </footer>
 
 <script src="assets/js/custom.js"></script>
